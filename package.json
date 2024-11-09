@@ -4,8 +4,10 @@
   "packageManager": "yarn@4.4.1",
   "dependencies": {
     "autoprefixer": "^10.4.20",
+    "body-parser": "^1.20.3",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
+    "method-override": "^3.0.0",
     "mongoose": "^8.7.2",
     "nodemon": "^3.1.4",
     "postcss": "^8.4.47",
