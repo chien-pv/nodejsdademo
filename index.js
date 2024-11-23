@@ -1,6 +1,7 @@
 import express from "express";
 import rootRouter from "./routes/root.mjs";
 import userRouter from "./routes/user.mjs";
+import apiuserRouter from "./routes/api.mjs";
 import { connectDB } from "./config/connectDB.mjs";
 import bodyParser from "body-parser";
 import methodOverride from "method-override";
@@ -29,6 +30,7 @@ app.use(express.static("public"));
 
 app.use("/", rootRouter);
 app.use("/users", userRouter);
+app.use("/api/v1", apiuserRouter);
 
 app.listen(port, () => {
   console.log("Server stated!!!");
