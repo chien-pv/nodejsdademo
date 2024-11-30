@@ -1,9 +1,29 @@
 import User from "../models/user.mjs";
+import jwt from "jsonwebtoken";
+
 class ApiUserController {
+  static async login(req, res) {
+    let { email, password } = req.body;
+    let user = await User.findOne({ email });
+    if (user) {
+      let checkpass = user.password == password;
+      if (checkpass) {
+        let payload = { name: user.name, email: user.email };
+        var token = jwt.sign(payload, "demoDA");
+        res
+          .status(200)
+          .json({ message: "Login thanh cong!!!", acessToken: token });
+      } else {
+        res.status(404).json({ message: "Login khong thanh cong!!!" });
+      }
+    } else {
+      res.status(404).json({ message: "Login khong thanh cong!!!" });
+    }
+  }
+
   static async index(req, res) {
     try {
       let users = await User.find({});
-      console.log(users);
       res
         .status(200)
         .json({ message: "Load du lieu thanh cong!!", data: users });
