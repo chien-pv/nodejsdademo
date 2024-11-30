@@ -5,10 +5,19 @@ import apiuserRouter from "./routes/api.mjs";
 import { connectDB } from "./config/connectDB.mjs";
 import bodyParser from "body-parser";
 import methodOverride from "method-override";
+import session from "express-session";
 
 connectDB();
 const app = express();
 const port = 3000;
+
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));

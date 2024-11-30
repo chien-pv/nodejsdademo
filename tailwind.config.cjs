@@ -6,6 +6,7 @@ export default {
     "./*.{html,js,css} ",
     "./**/**/*.ejs",
     "./views/user.ejs",
+    "./views/login.ejs",
     "./views/formnew.ejs",
   ],
   mode: "jit",
