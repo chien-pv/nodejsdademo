@@ -1,7 +1,17 @@
 const Product = require("../models/product");
 class ProductController {
   static async index(req, res) {
-    const products = await Product.find({});
+    const q = req.query.q;
+    console.log(q);
+    let products;
+    // if (q) {
+    //   products = await Product.find({ name: { $regex: ".*" + q + ".*" } });
+    // } else {
+    // Tìm các sản phẩm có số lượng từ 2-10
+    products = await Product.find({
+      $and: [{ quantity: { $gte: 2 } }, { quantity: { $lte: 10 } }],
+    });
+    // }
     res.render("products/index", { products });
   }
   static async new(req, res) {
