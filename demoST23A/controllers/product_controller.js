@@ -1,16 +1,24 @@
 const Product = require("../models/product");
 class ProductController {
   static async index(req, res) {
+    const limit = 5;
+    let count = await Product.countDocuments({});
+    let pages = Math.ceil(count / limit);
     const q = req.query.q;
-    console.log(q);
+    let page = req.query.page;
+    page = parseInt(page);
+    // page = 1, limit=5, skip = 0
+    // page = 2, limit=5, skip = 5
+    // page = 3, limit=5, skip = 10
+    // page = n,  limit =5, skip = 5x(n-1)
+    let skip = (page - 1) * limit;
+    console.log(pages);
     let products;
     // if (q) {
     //   products = await Product.find({ name: { $regex: ".*" + q + ".*" } });
     // } else {
     // Tìm các sản phẩm có số lượng từ 2-10
-    products = await Product.find({
-      $and: [{ quantity: { $gte: 2 } }, { quantity: { $lte: 10 } }],
-    });
+    products = await Product.find({}).skip(skip).limit(limit);
     // }
     res.render("products/index", { products });
   }
