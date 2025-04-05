@@ -12,6 +12,9 @@ function checkLogin(req, res, next) {
 }
 
 router.get("/", checkLogin, HomeController.index);
+router.get("/resgiter", HomeController.resgiter);
+router.post("/resgiter", HomeController.newresgiter);
+
 router.get("/login", HomeController.login);
 router.post("/login", HomeController.createlogin);
 router.get("/products", ProductController.index);

@@ -1,0 +1,15 @@
+<%- include('layouts/header'); -%>
+<main class="container">
+    <h1>Resgiter Page</h1>
+    <form action="/resgiter" method="post">
+        <label for> Email: </label>
+        <input placeholder="Nhập Email..." class="form-control" name="email"
+            type="text">
+        <label for> Password: </label>
+        <input placeholder="Nhập password..." class="form-control"
+            name="password" type="password">
+        <br>
+        <button class="btn btn-info" type="submit">Submit</button>
+    </form>
+</main>
+<%- include('layouts/footer'); -%>
