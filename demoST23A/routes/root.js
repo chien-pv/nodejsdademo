@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const HomeController = require("../controllers/home_controller");
 const ProductController = require("../controllers/product_controller");
-
+const AuthenController = require("../controllers/api/authen_controller");
 function checkLogin(req, res, next) {
   if (req.session.user) {
     next();
@@ -21,5 +21,6 @@ router.get("/products", ProductController.index);
 router.post("/products", ProductController.create);
 router.get("/products/new", ProductController.new);
 router.delete("/products/delete/:id", ProductController.delete);
+router.post("/api/login", AuthenController.login);
 
 module.exports = router;
